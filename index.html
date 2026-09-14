@@ -3,160 +3,461 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tool Đăng Ký Học Phần</title>
+    <title>Lê Đức Quốc Bảo - UTEer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: #334155;
-            --success: #22c55e;
-            --danger: #ef4444;
+            --bg-main: #f5f3e9;
+            --card-bg: #eae6d9;
+            --card-hover: #e2ddd0;
+            --text-dark: #1c1917;
+            --text-muted: #78716c;
+            --accent-yellow: #facc15;
+            --tag-green-bg: #dcfce7;
+            --tag-green-text: #166534;
+            --tag-yellow-bg: #fef08a;
+            --tag-yellow-text: #854d0e;
+            --tag-gray-bg: #e7e5e4;
+            --tag-gray-text: #57534e;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); padding: 20px; display: flex; justify-content: center; min-height: 100vh; }
-        .container { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 20px; }
-        
-        header { text-align: center; margin-bottom: 10px; }
-        header h1 { font-size: 1.8rem; color: var(--accent); }
-        header p { color: var(--text-muted); font-size: 0.9rem; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
 
-        .grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        @media (max-width: 768px) { .grid-layout { grid-template-columns: 1fr; } }
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            padding: 20px 0;
+            line-height: 1.5;
+        }
 
-        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
-        .card h2 { font-size: 1.1rem; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 8px; color: var(--text-main); }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-        .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px; }
-        .form-group input { width: 100%; padding: 10px; background: #0f172a; border: 1px solid var(--border); border-radius: 6px; color: #fff; font-size: 0.9rem; }
-        .form-group input:focus { outline: none; border-color: var(--accent); }
+        /* 1. Header Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
 
-        .btn { width: 100%; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 0.95rem; }
-        .btn-primary { background: var(--accent); color: white; margin-top: 10px; }
-        .btn-primary:hover { background: var(--accent-hover); }
-        .btn-danger { background: var(--danger); color: white; display: none; margin-top: 10px; }
+        .brand {
+            font-size: 1.25rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
 
-        .log-box { background: #090d16; border: 1px solid var(--border); border-radius: 6px; padding: 12px; height: 180px; overflow-y: auto; font-family: monospace; font-size: 0.85rem; }
-        .log-item { margin-bottom: 6px; }
-        .log-info { color: var(--text-muted); }
-        .log-success { color: var(--success); }
-        .log-error { color: var(--danger); }
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
-        th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--border); }
-        th { color: var(--text-muted); }
-        .badge { padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; }
-        .badge-pending { background: #334155; color: #cbd5e1; }
-        .badge-success { background: #14532d; color: #4ade80; }
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .btn-hi {
+            background-color: var(--accent-yellow);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            transition: transform 0.2s;
+        }
+
+        .btn-hi:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 2. Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url("cong1.jpg") center/cover;
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color:#dcfce7
+        }
+
+        .hero-title span {
+            color: #125dff;
+            position: relative;
+        }
+
+        .hero-quote {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        .role-tags {
+            display: flex;
+            gap: 10px;
+        }
+
+        .role-pill {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .role-coder { background-color: #fef08a; color: #854d0e; }
+        .role-designer { background-color: #ffedd5; color: #9a3412; }
+        .role-builder { background-color: #dcfce7; color: #166534; }
+
+        /* 3. Projects Section */
+        .section-header {
+            margin-bottom: 20px;
+        }
+
+        .section-sub {
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .project-card:hover {
+            background-color: var(--card-hover);
+            transform: translateY(-3px);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .status-done { background-color: var(--tag-green-bg); color: var(--tag-green-text); }
+        .status-dev { background-color: var(--tag-yellow-bg); color: var(--tag-yellow-text); }
+        .status-archive { background-color: var(--tag-gray-bg); color: var(--tag-gray-text); }
+
+        .card-desc {
+            color: #44403c;
+            font-size: 0.92rem;
+            margin-bottom: 20px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tech-pill {
+            background-color: rgba(0,0,0,0.05);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #57534e;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--text-dark);
+            width: fit-content;
+            padding-bottom: 2px;
+        }
+
+        /* 4. Footer Touch Section */
+        .touch-section {
+            padding-top: 20px;
+            border-top: 1px solid #e7e5e4;
+        }
+
+        .touch-section h2 {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        /* Khung chứa ảnh bìa */
+.hero_banner {
+    width: 100%;
+    height: 180px;
+    border-radius: 20px;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.hero_banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.hero_row {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    margin-top: -35px;
+    padding-left: 15px;
+    margin-bottom: 15px;
+}
+
+/* Ảnh Avatar tròn/bo góc */
+.hero_avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+    object-fit: cover;
+    border: 4px solid #fdfbf7; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Căn chỉnh lại chữ và tags */
+.hero_info {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-title {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.hero-quote {
+    margin: 4px 0 0 0;
+    color: #cff64f;
+    font-size: 0.9rem;
+}
+
+.role-tags {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+        .logo-img{
+    height: 55px; 
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+/* Chân trang */
+.footer-section {
+    margin-top: 60px;
+}
+
+.footer-card {
+    background-color: #eae6d9;
+    border-radius: 20px;
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.footer-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 8px 0 12px;
+}
+
+.footer-desc {
+    color: #57534e;
+    max-width: 520px;
+    margin: 0 auto 25px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    background-color: #f5f3e9;
+    color: #1c1917;
+    padding: 10px 22px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.social-btn:hover {
+    background-color: #facc15; /* Đổi sang màu vàng khi di chuột vào */
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px 0;
+    color: #78716c;
+    font-size: 0.85rem;
+    border-top: 1px solid #e7e5e4;
+}
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>Trình Quản Lý Đăng Ký Học Phần</h1>
-        <p>Bảng điều khiển tự động gửi request đăng ký môn học</p>
-    </header>
+    <div class="container">
+        <header>
+            <a href="#" class="brand">
+    <img src="logoFITute.png" alt="Logo" class="logo-img">
+            </a>
+            <nav>
+                <a href="#du-an" class="btn-hi">Dự án</a>
+                <a href="#">Liên hệ</a>
+                <a href="#" class="btn-hi">Go!</a>
+            </nav>
+        </header>
 
-    <div class="grid-layout">
-        <!-- Card 1: Cấu hình tài khoản -->
-        <div class="card">
-            <h2>Thiết Lập Phiên Đăng Nhập</h2>
-            <div class="form-group">
-                <label>Mã Sinh Viên</label>
-                <input type="text" id="studentId" placeholder="Nhập MSSV...">
-            </div>
-            <div class="form-group">
-                <label>Mật Khẩu</label>
-                <input type="password" id="password" placeholder="••••••••">
-            </div>
-            <div class="form-group">
-                <label>Thời Gian Delay (giây)</label>
-                <input type="number" id="delay" value="1" min="0.5" step="0.5">
-            </div>
-            <button class="btn btn-primary" id="startBtn" onclick="toggleTool(true)">Kích Hoạt Tool</button>
-            <button class="btn btn-danger" id="stopBtn" onclick="toggleTool(false)">Dừng Chạy</button>
-        </div>
-
-        <!-- Card 2: Danh sách môn học -->
-        <div class="card">
-            <h2>Môn Học Cần Săn Slot</h2>
-            <div style="display: flex; gap: 8px;">
-                <input type="text" id="courseCode" placeholder="Mã HP (VD: INSE2301)" style="flex:1; padding: 8px; background:#0f172a; border:1px solid var(--border); border-radius:6px; color:#fff;">
-                <button onclick="addCourse()" style="padding: 8px 15px; background: var(--accent); color:white; border:none; border-radius:6px; cursor:pointer;">Thêm</button>
-            </div>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Mã HP</th>
-                        <th>Trạng Thái</th>
-                    </tr>
-                </thead>
-                <tbody id="courseTable">
-                    <tr>
-                        <td>INSE330380</td>
-                        <td><span class="badge badge-pending">Đang chờ</span></td>
-                    </tr>
-                </tbody>
-            </table>
+        <section class="hero">
+    <div class="hero_banner">
+        <img src="anhtrong.avif" alt="Ảnh bìa">
+    </div>
+    <div class="hero_row">
+        <img src="phrolova.gif" alt="Avatar" class="hero_avatar">
+        <div class="hero_info">
+            <h1 class="hero-title">Xin chào, mình là <span>Quốc Bảo</span></h1>
+            <p class="hero-quote">"Wed tạo ra với mục tiêu phục vụ việc học tập..."</p>
         </div>
     </div>
 
-    <!-- Card 3: Nhật ký hoạt động -->
-    <div class="card">
-        <h2>Nhật Ký Hệ Thống (Logs)</h2>
-        <div class="log-box" id="logBox">
-            <div class="log-item log-info">[SYSTEM] Khởi tạo giao diện thành công. Sẵn sàng cấu hình...</div>
+    <!-- 3. Các thẻ Tag kỹ năng -->
+    <div class="role-tags">
+        <span class="role-pill role-coder">Security</span>
+        <span class="role-pill role-designer">CTF</span>
+        <span class="role-pill role-builder">More</span>
+    </div>
+</section>
+        <!-- Selected Work -->
+        <section>
+            <div class="section-header">
+                <span class="section-sub">SELECTED WORK</span>
+                <h2 id="du-an" class="section-title">Dự án trước khi ra trường</h2>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Card 1 -->
+                <div class="project-card">
+                    <div>
+                        <div class="card-top">
+                            <h3 class="card-title">Portfolio Cá Nhân</h3>
+                            <span class="status-badge status-done">Hoàn thành</span>
+                        </div>
+                        <p class="card-desc">Website định danh cá nhân với kiến trúc Monolithic PHP, tích hợp animation nhẹ và trải nghiệm mượt trên mobile.</p>
+                        <div class="tech-stack">
+                            <span class="tech-pill">PHP 8</span>
+                            <span class="tech-pill">CSS3</span>
+                            <span class="tech-pill">Vanilla JS</span>
+                        </div>
+                    </div>
+                    <a href="#" class="card-link">Xem chi tiết →</a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="project-card">
+                    <div>
+                        <div class="card-top">
+                            <h3 class="card-title">Tool đăng ký học phần ute</h3>
+                            <span class="status-badge status-dev">Đang phát triển</span>
+                        </div>
+                        <p class="card-desc">Hệ thống quản lý công việc thời gian thực, hỗ trợ kéo thả và đồng bộ đa nền tảng.</p>
+                        <div class="tech-stack">
+                            <span class="tech-pill">React</span>
+                            <span class="tech-pill">Node.js</span>
+                            <span class="tech-pill">MongoDB</span>
+                        </div>
+                    </div>
+                    <a href="#" class="card-link">Xem chi tiết →</a>
+                </div>
+
+                
+        <!-- Footer / Touch -->
+        <div class="touch-section">
+            <span class="section-sub">GET IN TOUCH</span>
+            <h2>Liên hệ với mình</h2>
         </div>
     </div>
-</div>
-
-<script>
-    function addLog(message, type = 'info') {
-        const logBox = document.getElementById('logBox');
-        const time = new Date().toLocaleTimeString();
-        const logItem = document.createElement('div');
-        logItem.className = `log-item log-${type}`;
-        logItem.innerText = `[${time}] ${message}`;
-        logBox.appendChild(logItem);
-        logBox.scrollTop = logBox.scrollHeight;
-    }
-
-    function addCourse() {
-        const codeInput = document.getElementById('courseCode');
-        const code = codeInput.value.trim();
-        if (!code) return;
-
-        const table = document.getElementById('courseTable');
-        const row = document.createElement('tr');
-        row.innerHTML = `<td>${code}</td><td><span class="badge badge-pending">Đang chờ</span></td>`;
-        table.appendChild(row);
+<footer id="lien-he" class="footer-section">
+    <div class="footer-card">
+        <span class="section-sub">GET IN TOUCH</span>
+        <h2 class="footer-title">Liên hệ với mình</h2>
+        <p class="footer-desc">Nếu bạn có thắc mắc, ý tưởng hợp tác hoặc đơn giản là muốn trao đổi về lập trình & an toàn thông tin, hãy gửi tin nhắn nhé!</p>
         
-        addLog(`Đã thêm mã học phần: ${code}`, 'info');
-        codeInput.value = '';
-    }
-
-    function toggleTool(running) {
-        const startBtn = document.getElementById('startBtn');
-        const stopBtn = document.getElementById('stopBtn');
-        
-        if (running) {
-            startBtn.style.display = 'none';
-            stopBtn.style.display = 'block';
-            addLog('Bắt đầu khởi tạo tiến trình gửi gói tin...', 'info');
-        } else {
-            startBtn.style.display = 'block';
-            stopBtn.style.display = 'none';
-            addLog('Đã tạm dừng tool.', 'error');
-        }
-    }
-</script>
-
+        <!-- Các nút liên kết mạng xã hội -->
+        <div class="social-links">
+            <a href="mailto:your-email@gmail.com" class="social-btn">Email</a>
+            <a href="https://github.com" target="_blank" class="social-btn">GitHub</a>
+            <a href="https://facebook.com/leducquocbao317" target="_blank" class="social-btn">Facebook</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Quốc Bảo. Designed & Built with ❤️</p>
+    </div>
+</footer>
 </body>
 </html>
