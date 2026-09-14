@@ -1,45 +1,162 @@
-<html>
-  <head> 
-    <meta charset=" utf-8">
-    <h1><center>Ôn tập tốt nghiệp</center></h1>
-  <p> <center>Lê Đức Quốc Bảo - Lớp 12a10</center></p>
-  </head>
-  <body>
-    <ol>
-  <li>
-    <b>Bài F1</b>
-    <ul>
-      <li><a href="Bai1/Hinh3.html">Bài hình 3</a></li>
-      <li><a href="Bai1/Hinh4.html">Bài hình 4</a></li>
-      <li><a href="Bai1/Hinh5.html">Bài hình 5</a></li>
-      <li><a href="Bai1/Hinh6.html">Bài hình 6</a></li>
-      <li><a href="Bai1/Hinh7.html">Bài hình 7</a></li>
-    </ul>
-  </li>
-  <li><b>Bài F2</b></li>
-      <ul>
-        <li><a href="BaiF2/Hinh2.html">Bài hình 2</a></li>
-        <li><a href="BaiF2/Hinh4.html">Bài hình 4</a></li>
-        <li><a href="BaiF2/Hinh5.html">Bài hình 5</a></li>
-        <li><a href="BaiF2/Hinh6.html">Bài hình 6</a></li>
-        <li><a href="BaiF2/Hinh7.html">Bài hình 7</a></li>
-        <li><a href="BaiF2/Hinh8.html">Bài hình 8</a></li>
-      </ul>
-      <li><b>Bài F3</b></li>
-      <ul>
-       <li><a href="BaiF3/Hinh2.html">Bài hình 2</a></li>
-        <li><a href="BaiF3/Hinh3.html">Bài hình 3</a></li>
-        <li><a href="BaiF3/Hinh4.html">Bài hình 4</a></li>
-        <li><a href="BaiF3/Hinh5.html">Bài hình 5</a></li>
-        <li><a href="BaiF3/Hinh6.html">Bài hình 6</a></li>
-        <li><a href="BaiF3/Baithuchanh.html">Bài thực hành</a></li>
-      </ul>
-      <li><b>Bài F4</b></li>
-      <ul>
-        <li><a href="BaiF4/Hinh3">Bài hình 3</a></li>
-        <li><a href="BaiF4/kiyeu.html">Kỉ Yếu Lớp 12A10</a></li>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool Đăng Ký Học Phần</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --success: #22c55e;
+            --danger: #ef4444;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); padding: 20px; display: flex; justify-content: center; min-height: 100vh; }
+        .container { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 20px; }
         
-      </ul>
-  </ol>
-  </body>
+        header { text-align: center; margin-bottom: 10px; }
+        header h1 { font-size: 1.8rem; color: var(--accent); }
+        header p { color: var(--text-muted); font-size: 0.9rem; }
+
+        .grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) { .grid-layout { grid-template-columns: 1fr; } }
+
+        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+        .card h2 { font-size: 1.1rem; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 8px; color: var(--text-main); }
+
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px; }
+        .form-group input { width: 100%; padding: 10px; background: #0f172a; border: 1px solid var(--border); border-radius: 6px; color: #fff; font-size: 0.9rem; }
+        .form-group input:focus { outline: none; border-color: var(--accent); }
+
+        .btn { width: 100%; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 0.95rem; }
+        .btn-primary { background: var(--accent); color: white; margin-top: 10px; }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-danger { background: var(--danger); color: white; display: none; margin-top: 10px; }
+
+        .log-box { background: #090d16; border: 1px solid var(--border); border-radius: 6px; padding: 12px; height: 180px; overflow-y: auto; font-family: monospace; font-size: 0.85rem; }
+        .log-item { margin-bottom: 6px; }
+        .log-info { color: var(--text-muted); }
+        .log-success { color: var(--success); }
+        .log-error { color: var(--danger); }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
+        th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--border); }
+        th { color: var(--text-muted); }
+        .badge { padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; }
+        .badge-pending { background: #334155; color: #cbd5e1; }
+        .badge-success { background: #14532d; color: #4ade80; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Trình Quản Lý Đăng Ký Học Phần</h1>
+        <p>Bảng điều khiển tự động gửi request đăng ký môn học</p>
+    </header>
+
+    <div class="grid-layout">
+        <!-- Card 1: Cấu hình tài khoản -->
+        <div class="card">
+            <h2>Thiết Lập Phiên Đăng Nhập</h2>
+            <div class="form-group">
+                <label>Mã Sinh Viên</label>
+                <input type="text" id="studentId" placeholder="Nhập MSSV...">
+            </div>
+            <div class="form-group">
+                <label>Mật Khẩu</label>
+                <input type="password" id="password" placeholder="••••••••">
+            </div>
+            <div class="form-group">
+                <label>Thời Gian Delay (giây)</label>
+                <input type="number" id="delay" value="1" min="0.5" step="0.5">
+            </div>
+            <button class="btn btn-primary" id="startBtn" onclick="toggleTool(true)">Kích Hoạt Tool</button>
+            <button class="btn btn-danger" id="stopBtn" onclick="toggleTool(false)">Dừng Chạy</button>
+        </div>
+
+        <!-- Card 2: Danh sách môn học -->
+        <div class="card">
+            <h2>Môn Học Cần Săn Slot</h2>
+            <div style="display: flex; gap: 8px;">
+                <input type="text" id="courseCode" placeholder="Mã HP (VD: INSE2301)" style="flex:1; padding: 8px; background:#0f172a; border:1px solid var(--border); border-radius:6px; color:#fff;">
+                <button onclick="addCourse()" style="padding: 8px 15px; background: var(--accent); color:white; border:none; border-radius:6px; cursor:pointer;">Thêm</button>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã HP</th>
+                        <th>Trạng Thái</th>
+                    </tr>
+                </thead>
+                <tbody id="courseTable">
+                    <tr>
+                        <td>INSE330380</td>
+                        <td><span class="badge badge-pending">Đang chờ</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Card 3: Nhật ký hoạt động -->
+    <div class="card">
+        <h2>Nhật Ký Hệ Thống (Logs)</h2>
+        <div class="log-box" id="logBox">
+            <div class="log-item log-info">[SYSTEM] Khởi tạo giao diện thành công. Sẵn sàng cấu hình...</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function addLog(message, type = 'info') {
+        const logBox = document.getElementById('logBox');
+        const time = new Date().toLocaleTimeString();
+        const logItem = document.createElement('div');
+        logItem.className = `log-item log-${type}`;
+        logItem.innerText = `[${time}] ${message}`;
+        logBox.appendChild(logItem);
+        logBox.scrollTop = logBox.scrollHeight;
+    }
+
+    function addCourse() {
+        const codeInput = document.getElementById('courseCode');
+        const code = codeInput.value.trim();
+        if (!code) return;
+
+        const table = document.getElementById('courseTable');
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${code}</td><td><span class="badge badge-pending">Đang chờ</span></td>`;
+        table.appendChild(row);
+        
+        addLog(`Đã thêm mã học phần: ${code}`, 'info');
+        codeInput.value = '';
+    }
+
+    function toggleTool(running) {
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        
+        if (running) {
+            startBtn.style.display = 'none';
+            stopBtn.style.display = 'block';
+            addLog('Bắt đầu khởi tạo tiến trình gửi gói tin...', 'info');
+        } else {
+            startBtn.style.display = 'block';
+            stopBtn.style.display = 'none';
+            addLog('Đã tạm dừng tool.', 'error');
+        }
+    }
+</script>
+
+</body>
 </html>
